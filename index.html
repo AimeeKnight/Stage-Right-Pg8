@@ -1,0 +1,81 @@
+<!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Stage Right!</title>
+    <link rel='stylesheet' href='css/normalize.css'>
+    <link rel='stylesheet' href='css/foundation.css'>
+    <link rel='stylesheet' href='css/style.css'>
+    <script src='js/modernizr.js'></script>
+  </head>
+  <body>
+    <div class="large-12 columns main">
+      <form>
+        <fieldset>
+         <legend>
+           <span><img src="images/logo.png"></span>
+           Stage Right! Camp &nbsp;
+         </legend>
+          <div class="row">
+            <div class="large-8 columns">
+              <label>Payment Option</label>
+                <select id="payment_option">
+                  <option value="none"></option>
+                  <option value="pay_in_full">Pay in Full</option>
+                  <option value="pay_deposit">Pay Deposit</option>
+                </select>
+              </label>
+
+              <input type="checkbox" id="assistance" name="tuition_assistance" value="tuition_assistance">
+              <label for="">Request Tuition Assistance</label><br>
+            </div>
+            <div class="large-4 columns">
+              <label>Quantity</label>
+              <input type="number" name="quantity" placeholder="1" min="0">
+            </div>
+          </div>
+
+          <div class="row form-row">
+            <div class="large-3 columns">
+              <label>Camper 1</label>
+              <input type="text" name="names", placeholder="Camper Name">
+            </div>
+            <div class="large-3 columns foursome">
+              <label>Camper 2</label>
+              <input type="text" name="names" placeholder="Camper Name">
+            </div>
+            <div class="large-3 columns foursome">
+              <label>Camper 3</label>
+              <input type="text" name="names" placeholder="Camper Name">
+            </div>
+            <div class="large-3 columns foursome">
+              <label>Camper 4</label>
+              <input type="text" name="names" placeholder="Camper Name">
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-10 columns">
+              <h4>Total: $ <span id="total">0</span></h4>
+            </div>
+            <div class="large-2 columns">
+              <a href="#" id="submit" class="large radius button">Submit</a>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="large-12 columns">
+              <p> This packet contains the Camper Application Form, the Parent or Guardian Consent Form, the Code of Conduct Agreement and Policy, the Contact Information Release Form, and the optional Partial Scholarship Request procedure. <br>
+              Please double-check that all sections have been signed before submitting this application by July 25, 2014 to your Stage Right!  Be sure to include your deposit ($125) made payable to Stage Right. </p>
+              <a href="camper_application_packet.doc">Download Camper Application Packet</a>
+          </fieldset>
+        </form>
+      </div>
+
+      <script src='js/modernizr.js'></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src='js/foundation.js'></script>
+      <script src='js/main.js'></script>
+    </body>
+  </html>
