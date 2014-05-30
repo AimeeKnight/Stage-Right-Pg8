@@ -52,15 +52,14 @@
 
   function calculateVoiceWorkshopTotal(){
     var $total = 0;
-    var $qty = $("select#voice-option-qty > option:selected").text() * 1;
-    console.log($qty);
-    if ($qty >= 2){
+    var $qty = $("select#voice-option-qty > option:selected").text();
+    if (($qty * 1) >= 2){
       var total = $qty * 100;
       var discount = total * .10;
       total -= discount;
-    } else if ($qty = 1) {
+    } else if ($qty === "1") {
       total = 100;
-    }else{
+    }else {
       total = 0
     }
     $("#total").text(total);
@@ -75,7 +74,19 @@
     var $paymentOption = $("#payment_option").find(":selected").val();
     var $assistance = $("#assistance").is(":checked")
     var $quantity = parseInt($("input[name=quantity]").val());
+
+    var workshopTotal = calculateVoiceWorkshopTotal();
+    var $workshopQty = $("select#voice-option-qty > option:selected").text() *1;
+    var $workshopId = $("select#voice-option > option:selected").attr('id');
+    var $workshopDescription = $("select#voice-option > option:selected").text();
     var $emergencyNumber = $("input[name=phone]").val();
+
+    if (workshopTotal > 0) {
+      url += "&cart[items]["+items+"][desc]="+$workshopDescription;
+      url += "&cart[items]["+items+"][amount]="+$workshopTotal;
+      url += "&cart[items]["+items+"][product_id]="+$workshopId;
+      url += "&cart[items]["+items+"][quantity]="+$workshopQty;
+    }
 
     if ($paymentOption === "pay_in_full") {
       url += "&cart[items]["+items+"][desc]=Child+Payment";
