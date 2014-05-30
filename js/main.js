@@ -8,7 +8,6 @@
     $(document).foundation();
     $("#submit").click(buildUrl);
     $("input, select").change(calculateVoiceWorkshopTotal);
-    //$("input, select").change(calculateTotal);
   }
 
   function getNames(){
@@ -22,32 +21,6 @@
     });
     names.join();
     return names;
-  }
-
-  function calculateTotal(){
-    var $paymentOption = $("#payment_option").find(":selected").val();
-    var $quantity = $("input[name=quantity]").val();
-    if ($quantity == "" && $paymentOption != "none") {
-      $("input[name=quantity]").val("1");
-    }
-    var $total = 0;
-
-    if ($paymentOption === "pay_in_full") {
-      $total = 225
-
-      if ($quantity > 0) {
-        $total =  $total * $quantity
-      };
-    } else if ($paymentOption === "pay_deposit") {
-      $total = 125
-
-      if ($quantity > 0) {
-        $total =  $total * $quantity
-      };
-    };
-
-    $("#total").text($total);
-    return $total
   }
 
   function calculateVoiceWorkshopTotal(){
@@ -72,9 +45,9 @@
     var names = getNames();
     var url = "https://rcsf.trail-staging.us/widget?campaign_id=2834&schedule=0&success_url=http%3A//www.rochesterchristianschool.org/&cart[desc]=Camp"
 
-    var $paymentOption = $("#payment_option").find(":selected").val();
     var $assistance = $("#assistance").is(":checked")
-    var $quantity = parseInt($("input[name=quantity]").val());
+
+    var $paymentOption = $("#payment_option").find(":selected").val();
 
     var workshopTotal = calculateVoiceWorkshopTotal();
     var $workshopQty = $("select#voice-option-qty > option:selected").text() *1;
@@ -91,17 +64,17 @@
     }
 
     if ($paymentOption === "pay_in_full") {
+      items ++;
       url += "&cart[items]["+items+"][desc]=Child+Payment";
-      url += "&cart[items]["+items+"][amount]=225";
+      url += "&cart[items]["+items+"][product_id]=pay_in_full";
     } else {
+      items ++;
       url += "&cart[items]["+items+"][desc]=Child+Deposit";
-      url += "&cart[items]["+items+"][amount]=125";
+      url += "&cart[items]["+items+"][product_id]=pay_deposit";
     };
 
-    url += "&cart[items]["+items+"][product_id]="+$paymentOption;
-    url += "&cart[items]["+items+"][quantity]="+$quantity;
-
     if (names.length !== 0) {
+      items ++;
       url += "&cart[items]["+items+"][notes]="+names;
     }
 
@@ -112,6 +85,12 @@
       url += "&cart[items]["+items+"][product_id]=payment_assistance";
       url += "&cart[items]["+items+"][quantity]=0";
     };
+    
+    if ($emergencyNumber) {
+      items ++;
+      url += "&cart[items]["+items+"][desc]="+$emergencyNumber;
+      url += "&cart[items]["+items+"][product_id]=emergency_number";
+    }
 
     //window.location.href = url;
     alert(url);
