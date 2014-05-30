@@ -1,20 +1,12 @@
-/*
- @import url(//fonts.googleapis.com/css?family=Lato:400,700);
- */
-
-.main {
-  font-family: 'Lato', 'sans-serif';
-}
-
 img {
   height: 100px;
+  border-radius: 10px;
 }
 
 legend {
-  color: #34495e;
+  color: #2980b9;
   font-size: 20px;
   font-weight: bold;
-  font-family: 'Lato', 'sans-serif';
 }
 
 fieldset {
@@ -23,19 +15,15 @@ fieldset {
   border-radius: 10px;
 }
 
-label, h4 {
-  color: #34495e;
+h4 {
+  color: #2980b9;
   font-weight: bold;
-  font-family: 'Lato', 'sans-serif';
+}
+
+label {
+  font-weight: bold;
 }
 
 .button {
-  background-color: #34495e;
-  font-family: 'Lato', 'sans-serif';
-}
-
-.form-row {
-  border-bottom: 2px solid black;
-  margin-bottom: 30px;
-  padding-bottom: 30px;
+  background-color: #2980b9;
 }

@@ -52,8 +52,9 @@
 
   function calculateVoiceWorkshopTotal(){
     var $total = 0;
+    var $workshopDescription = $("select#voice-option > option:selected").text();
     var $qty = $("select#voice-option-qty > option:selected").text();
-    if (($qty * 1) >= 2){
+    if (($qty * 1) >= 2 && $workshopDescription !== ""){
       var total = $qty * 100;
       var discount = total * .10;
       total -= discount;
