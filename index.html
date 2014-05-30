@@ -18,10 +18,36 @@
            <span><img src="images/logo.png"></span>
            Stage Right! Camp &nbsp;
          </legend>
+
+          <div class="row">
+            <div class="large-8 columns">
+              <label>Voice Workshop $100</label>
+                <select id="voice-option">
+                  <option value="none"></option>
+                  <option value="pre-teen">Workshop Pre-Teen</option>
+                  <option value="teen">Workshop Teen</option>
+                  <option value="voice">Voice</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="large-4 columns">
+              <label>Quantity</label>
+                <select id="voice-option-qty">
+                  <option value="none"></option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+            </div>
+          </div>
+
           <div class="row">
             <div class="large-8 columns">
               <label>Payment Option</label>
-                <select id="payment_option">
+                <select id="payment-option">
                   <option value="none"></option>
                   <option value="pay_in_full">Pay in Full</option>
                   <option value="pay_deposit">Pay Deposit</option>
@@ -39,22 +65,30 @@
 
           <div class="row form-row">
             <div class="large-3 columns">
-              <label>Camper 1</label>
-              <input type="text" name="names", placeholder="Camper Name">
+              <label>Child 1</label>
+              <input type="text" name="names", placeholder="Child Name">
             </div>
             <div class="large-3 columns foursome">
-              <label>Camper 2</label>
-              <input type="text" name="names" placeholder="Camper Name">
+              <label>Child 2</label>
+              <input type="text" name="names" placeholder="Child Name">
             </div>
             <div class="large-3 columns foursome">
-              <label>Camper 3</label>
-              <input type="text" name="names" placeholder="Camper Name">
+              <label>Child 3</label>
+              <input type="text" name="names" placeholder="Child Name">
             </div>
             <div class="large-3 columns foursome">
-              <label>Camper 4</label>
-              <input type="text" name="names" placeholder="Camper Name">
+              <label>Child 4</label>
+              <input type="text" name="names" placeholder="Child Name">
             </div>
           </div>
+
+          <div class="row form-row">
+            <div class="large-3 columns">
+              <label>Emergency Phone</label>
+              <input type="text" name="phone", placeholder="Emergency Phone">
+            </div>
+          </div>
+
           <div class="row">
             <div class="large-10 columns">
               <h4>Total: $ <span id="total">0</span></h4>

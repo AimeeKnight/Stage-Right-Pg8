@@ -7,7 +7,8 @@
   function initialize(){
     $(document).foundation();
     $("#submit").click(buildUrl);
-    $("input, select").change(calculateTotal);
+    $("input, select").change(calculateVoiceWorkshopTotal);
+    //$("input, select").change(calculateTotal);
   }
 
   function getNames(){
@@ -24,13 +25,12 @@
   }
 
   function calculateTotal(){
-
     var $paymentOption = $("#payment_option").find(":selected").val();
     var $quantity = $("input[name=quantity]").val();
-    if($quantity == "" && $paymentOption != "none") {
-	$("input[name=quantity]").val("1");
+    if ($quantity == "" && $paymentOption != "none") {
+      $("input[name=quantity]").val("1");
     }
-    var $total = 0
+    var $total = 0;
 
     if ($paymentOption === "pay_in_full") {
       $total = 225
@@ -50,6 +50,23 @@
     return $total
   }
 
+  function calculateVoiceWorkshopTotal(){
+    var $total = 0;
+    var $qty = $("select#voice-option-qty > option:selected").text() * 1;
+    console.log($qty);
+    if ($qty >= 2){
+      var total = $qty * 100;
+      var discount = total * .10;
+      total -= discount;
+    } else if ($qty = 1) {
+      total = 100;
+    }else{
+      total = 0
+    }
+    $("#total").text(total);
+    return total;
+  }
+
   function buildUrl(){
     var items = 0;
     var names = getNames();
@@ -58,6 +75,7 @@
     var $paymentOption = $("#payment_option").find(":selected").val();
     var $assistance = $("#assistance").is(":checked")
     var $quantity = parseInt($("input[name=quantity]").val());
+    var $emergencyNumber = $("input[name=phone]").val();
 
     if ($paymentOption === "pay_in_full") {
       url += "&cart[items]["+items+"][desc]=Child+Payment";
