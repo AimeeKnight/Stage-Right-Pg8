@@ -77,13 +77,14 @@
 
     var workshopTotal = calculateVoiceWorkshopTotal();
     var $workshopQty = $("select#voice-option-qty > option:selected").text() *1;
-    var $workshopId = $("select#voice-option > option:selected").attr('id');
+    var $workshopId = $("select#voice-option > option:selected").attr('value');
     var $workshopDescription = $("select#voice-option > option:selected").text();
     var $emergencyNumber = $("input[name=phone]").val();
 
     if (workshopTotal > 0) {
+      items ++;
       url += "&cart[items]["+items+"][desc]="+$workshopDescription;
-      url += "&cart[items]["+items+"][amount]="+$workshopTotal;
+      url += "&cart[items]["+items+"][amount]="+workshopTotal;
       url += "&cart[items]["+items+"][product_id]="+$workshopId;
       url += "&cart[items]["+items+"][quantity]="+$workshopQty;
     }
@@ -111,8 +112,8 @@
       url += "&cart[items]["+items+"][quantity]=0";
     };
 
-    window.location.href = url;
-    // alert(url);
+    //window.location.href = url;
+    alert(url);
   }
 
 })();
