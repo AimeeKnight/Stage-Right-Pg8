@@ -85,7 +85,7 @@
       url += "&cart[items]["+items+"][product_id]=payment_assistance";
       url += "&cart[items]["+items+"][quantity]=0";
     };
-    
+
     if ($emergencyNumber) {
       items ++;
       url += "&cart[items]["+items+"][desc]="+$emergencyNumber;
