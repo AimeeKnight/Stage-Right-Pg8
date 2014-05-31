@@ -1,6 +1,7 @@
 (function(){
 
   "use strict";
+  var items = 0;
 
   $(document).ready(initialize);
 
@@ -13,7 +14,6 @@
   function getNumberofKids(){
     var $qty = $("select#child-qty > option:selected").text();
     var qty = $qty * 1;
-    console.log(qty);
     return qty;
   }
 
@@ -64,15 +64,26 @@
     var voiceTotal = calculateVoiceDiscount();
     total += homeSchoolTotal;
     total += voiceTotal;
-    console.log(total);
     return total;
   }
 
-  function buildUrl(){
-    var items = 0;
+  function addNotes(url){
     var $name = $("input[name=name]").val();
     var $emergencyNumber = $("input[name=phone]").val();
+    if ($name) {
+      items ++;
+      url += "&cart[items]["+items+"][notes]="+name;
+    }
+    if ($emergencyNumber) {
+      items ++;
+      url += "&cart[items]["+items+"][notes]=emergency_number";
+    }
+    return url
+  }
+
+  function buildUrl(){
     var url = "https://stageright.trail-staging.us/?campaign_id=2904&schedule=1&max_times_donate=3";
+    url += addNotes(url);
     var $assistance = $("#assistance").is(":checked")
     var $paymentOption = $("#payment_option").find(":selected").val();
     var homeSchoolTotal = calculateHomeSchoolDiscount();
@@ -101,7 +112,7 @@
       items ++;
       url += "&cart[items]["+items+"][desc]=Child Payment";
       url += "&cart[items]["+items+"][product_id]=pay_in_full";
-    } else if ($paymentOption === "pay_deposit"){
+    } else {
       items ++;
       url += "&cart[items]["+items+"][desc]=Child Deposit";
       url += "&cart[items]["+items+"][product_id]=pay_deposit";
@@ -115,17 +126,7 @@
       url += "&cart[items]["+items+"][quantity]=1";
     };
 
-    if ($name) {
-      items ++;
-      url += "&cart[items]["+items+"][notes]="+name;
-    }
-
-    if ($emergencyNumber) {
-      items ++;
-      url += "&cart[items]["+items+"][notes]=emergency_number";
-    }
-
-    if (items > 0){
+    if ($('#total').text() > 0){
       alert(url);
       //window.location.href = url;
     }
