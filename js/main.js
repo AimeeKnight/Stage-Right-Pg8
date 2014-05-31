@@ -101,11 +101,11 @@
       items ++;
       url += "&cart[items]["+items+"][desc]=Child Payment";
       url += "&cart[items]["+items+"][product_id]=pay_in_full";
-    } else {
+    } else if ($paymentOption === "pay_deposit"){
       items ++;
       url += "&cart[items]["+items+"][desc]=Child Deposit";
       url += "&cart[items]["+items+"][product_id]=pay_deposit";
-    };
+    }
 
     if ($assistance) {
       items ++;
@@ -125,8 +125,10 @@
       url += "&cart[items]["+items+"][notes]=emergency_number";
     }
 
-    //window.location.href = url;
-    alert(url);
+    if (items > 0){
+      alert(url);
+      //window.location.href = url;
+    }
   }
 
 })();
