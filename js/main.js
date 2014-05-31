@@ -72,18 +72,18 @@
     var $emergencyNumber = $("input[name=phone]").val();
     if ($name) {
       items ++;
-      url += "&cart[items]["+items+"][notes]="+name;
+      url += "&cart[items]["+items+"][notes]="+$name;
     }
     if ($emergencyNumber) {
       items ++;
-      url += "&cart[items]["+items+"][notes]=emergency_number";
+      url += "&cart[items]["+items+"][notes]="+$emergencyNumber;
     }
     return url
   }
 
   function buildUrl(){
     var url = "https://stageright.trail-staging.us/?campaign_id=2904&schedule=1&max_times_donate=3";
-    url += addNotes(url);
+    url = addNotes(url);
     var $assistance = $("#assistance").is(":checked")
     var $paymentOption = $("#payment_option").find(":selected").val();
     var homeSchoolTotal = calculateHomeSchoolDiscount();
@@ -103,19 +103,19 @@
     if (voiceTotal > 0) {
       items ++;
       url += "&cart[items]["+items+"][desc]="+$workshopDescription;
-      url += "&cart[items]["+items+"][amount]="+workshopTotal;
+      url += "&cart[items]["+items+"][amount]="+voiceTotal;
       url += "&cart[items]["+items+"][product_id]="+$workshopId;
       url += "&cart[items]["+items+"][quantity]=1";
     }
 
-    if ($paymentOption === "pay_in_full") {
-      items ++;
-      url += "&cart[items]["+items+"][desc]=Child Payment";
-      url += "&cart[items]["+items+"][product_id]=pay_in_full";
-    } else {
+    if ($paymentOption === "pay_deposit") {
       items ++;
       url += "&cart[items]["+items+"][desc]=Child Deposit";
       url += "&cart[items]["+items+"][product_id]=pay_deposit";
+    } else {
+      items ++;
+      url += "&cart[items]["+items+"][desc]=Child Payment";
+      url += "&cart[items]["+items+"][product_id]=pay_in_full";
     }
 
     if ($assistance) {
