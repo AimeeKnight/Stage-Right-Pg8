@@ -20,8 +20,26 @@
          </legend>
 
           <div class="row">
-            <div class="large-8 columns">
+            <div class="large-4 columns">
+              <label>Total Number of Children Registered</label>
+              <label>( Please call for 4 or more students )</label>
+                <select id="child-qty">
+                  <option value="none"></option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+            </div>
+
+            <div class="large-4 columns">
+              <label for="">Home School Workshop - $130</label>
+              <label for="">( $100 for second and third child )</label>
+              <input type="checkbox" id="assistance" name="tuition_assistance" value="tuition_assistance">
+            </div>
+
+            <div class="large-4 columns">
               <label>Voice Workshop - $100 for 10 weeks</label>
+              <label>( 10% discount for multiple children )</label>
                 <select id="voice-option">
                   <option value="none"></option>
                   <option value="14_pre_teen_voice_workshop">Voice Workshop Pre-Teen</option>
@@ -29,18 +47,6 @@
                   <option value="14_voice_workshop">Voice Workshop</option>
                 </select>
               </label>
-            </div>
-
-            <div class="large-4 columns">
-              <label>Quantity</label>
-                <select id="voice-option-qty">
-                  <option value="none"></option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
             </div>
           </div>
 
@@ -53,33 +59,21 @@
                   <option value="pay_deposit">Pay Deposit</option>
                 </select>
               </label>
+            </div>
 
+            <div class="large-4 columns">
+              <br>
               <input type="checkbox" id="assistance" name="tuition_assistance" value="tuition_assistance">
-              <label for="">Request Tuition Assistance</label><br>
+              <label for="">Request Tuition Assistance</label>
             </div>
           </div>
 
           <div class="row">
-            <div class="large-3 columns">
-              <label>Child 1</label>
-              <input type="text" name="names", placeholder="Child Name">
+            <div class="large-8 columns">
+              <label>Child Name</label>
+              <input type="text" name="name", placeholder="Child Name">
             </div>
-            <div class="large-3 columns foursome">
-              <label>Child 2</label>
-              <input type="text" name="names" placeholder="Child Name">
-            </div>
-            <div class="large-3 columns foursome">
-              <label>Child 3</label>
-              <input type="text" name="names" placeholder="Child Name">
-            </div>
-            <div class="large-3 columns foursome">
-              <label>Child 4</label>
-              <input type="text" name="names" placeholder="Child Name">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="large-3 columns">
+            <div class="large-4 columns">
               <label>Emergency Phone</label>
               <input type="text" name="phone", placeholder="(111) 222-3333">
             </div>

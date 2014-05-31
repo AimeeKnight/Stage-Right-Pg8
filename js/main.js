@@ -10,20 +10,15 @@
     $("input, select").change(calculateVoiceWorkshopTotal);
   }
 
-  function getNames(){
-    var names = [];
-    var $names = $("input[name=names]");
-    $names.each(function(index, name){
-      name = $(name).val();
-      if (name){
-        names.push(name);
-      }
-    });
-    names.join();
-    return names;
+  function getNumberofKids(){
+    var $qty = $("select#child-qty > option:selected").text();
+    var qty = $qty * 1;
+    console.log(qty);
+    return qty;
   }
 
   function calculateVoiceWorkshopTotal(){
+    getNumberofKids();
     var $total = 0;
     var $workshopDescription = $("select#voice-option > option:selected").text();
     var $qty = $("select#voice-option-qty > option:selected").text();
@@ -42,8 +37,9 @@
 
   function buildUrl(){
     var items = 0;
-    var names = getNames();
-    var url = "https://rcsf.trail-staging.us/widget?campaign_id=2834&schedule=0&success_url=http%3A//www.rochesterchristianschool.org/&cart[desc]=Camp"
+    var $name = $("input[name=name]").val();
+    var $emergencyNumber = $("input[name=phone]").val();
+    var url = "https://stageright.trail-staging.us/?campaign_id=2904&schedule=1&max_times_donate=3";
 
     var $assistance = $("#assistance").is(":checked")
 
@@ -53,7 +49,6 @@
     var $workshopQty = $("select#voice-option-qty > option:selected").text() *1;
     var $workshopId = $("select#voice-option > option:selected").attr('value');
     var $workshopDescription = $("select#voice-option > option:selected").text();
-    var $emergencyNumber = $("input[name=phone]").val();
 
     if (workshopTotal > 0) {
       items ++;
@@ -73,9 +68,9 @@
       url += "&cart[items]["+items+"][product_id]=pay_deposit";
     };
 
-    if (names.length !== 0) {
+    if (name) {
       items ++;
-      url += "&cart[items]["+items+"][notes]="+names;
+      url += "&cart[items]["+items+"][notes]="+name;
     }
 
     if ($assistance) {
@@ -83,7 +78,7 @@
       url += "&cart[items]["+items+"][amount]=0";
       url += "&cart[items]["+items+"][desc]=Assistance";
       url += "&cart[items]["+items+"][product_id]=payment_assistance";
-      url += "&cart[items]["+items+"][quantity]=0";
+      url += "&cart[items]["+items+"][quantity]=1";
     };
 
     if ($emergencyNumber) {
@@ -93,7 +88,7 @@
     }
 
     //window.location.href = url;
-    alert(url);
+    console.log(url);
   }
 
 })();
