@@ -17,8 +17,14 @@
     return qty;
   }
 
+  function getNumberofKidsforVoice(){
+    var $qty = $("select#child-qty-voice > option:selected").text();
+    var qty = $qty * 1;
+    return qty;
+  }
+
   function calculateVoiceDiscount(){
-    var qty = getNumberofKids();
+    var qty = getNumberofKidsforVoice();
     var total = 0;
     var $voiceOption = $("select#voice-option > option:selected").text();
     if (qty >= 2 && $voiceOption !== ""){
