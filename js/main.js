@@ -56,11 +56,14 @@
 
   function splitPayments(){
     var $paymentOption = $("#payment-option").find(":selected").val();
-    var payment = calculateTotal();
+    var total = calculateTotal();
+    var payment = total;
+    var extra_text = ""
     if ($paymentOption === "pay_deposit"){
-      payment = Math.ceil(payment / 3);
+      payment = Math.ceil((100 * payment) / 3) / 100.0;
+      extra_text = " in 3 payments of (" + payment + ")"
     }
-    $("#total").text(payment);
+    $("#total").text(total + extra_text);
     return payment;
   }
 
@@ -88,9 +91,16 @@
   }
 
   function buildUrl(){
-    var url = "https://stageright.trail-staging.us/?campaign_id=2904&schedule=1&max_times_donate=3";
+    var url = "https://stageright.trail-staging.us/widget?campaign_id=2904&cart[desc]=HomeSchool";
     var $assistance = $("#assistance").is(":checked")
-    var $paymentOption = $("#payment_option").find(":selected").val();
+    var $paymentOption = $("#payment-option").find(":selected").attr('value');
+    var payment_split = 1;
+    if($paymentOption === "pay_deposit") {
+      url += "&schedule=1&max_times_donate=3"
+      payment_split = 3
+    }else {
+      url += "&schedule=0"
+    }
     var homeSchoolTotal = calculateHomeSchoolDiscount();
     var voiceTotal = calculateVoiceDiscount();
     var $workshopQty = $("select#voice-option-qty > option:selected").text() *1;
@@ -99,26 +109,17 @@
 
     if (homeSchoolTotal > 0) {
       items ++;
-      url += "&cart[items]["+items+"][amount]="+homeSchoolTotal;
+      url += "&cart[items]["+items+"][amount]="+ Math.ceil((100 * homeSchoolTotal) / 3) / 100.0
       url += "&cart[items]["+items+"][desc]=Home School";
       url += "&cart[items]["+items+"][product_id]=home_school";
       url += "&cart[items]["+items+"][quantity]=1";
     }
     if (voiceTotal > 0) {
       items ++;
-      url += "&cart[items]["+items+"][amount]="+voiceTotal;
+      url += "&cart[items]["+items+"][amount]="+ Math.ceil((100 * voiceTotal) / 3) / 100.0
       url += "&cart[items]["+items+"][desc]="+$workshopDescription;
       url += "&cart[items]["+items+"][product_id]="+$workshopId;
       url += "&cart[items]["+items+"][quantity]=1";
-    }
-    if ($paymentOption === "pay_deposit") {
-      items ++;
-      url += "&cart[items]["+items+"][desc]=Child Deposit";
-      url += "&cart[items]["+items+"][product_id]=pay_deposit";
-    } else {
-      items ++;
-      url += "&cart[items]["+items+"][desc]=Child Payment";
-      url += "&cart[items]["+items+"][product_id]=pay_in_full";
     }
     if ($assistance) {
       items ++;
@@ -128,9 +129,9 @@
       url += "&cart[items]["+items+"][quantity]=1";
     };
     url = addNotes(url);
-    if ($('#total').text() > 0){
-      alert(url);
-      //window.location.href = url;
+    if ($('#total').text() != "0"){
+      //alert(url);
+      window.location.href = url;
     }
   }
 
