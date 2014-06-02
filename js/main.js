@@ -109,14 +109,14 @@
 
     if (homeSchoolTotal > 0) {
       items ++;
-      url += "&cart[items]["+items+"][amount]="+ Math.ceil((100 * homeSchoolTotal) / 3) / 100.0
+      url += "&cart[items]["+items+"][amount]="+ Math.ceil((100 * homeSchoolTotal) / payment_split) / 100.0
       url += "&cart[items]["+items+"][desc]=Home School";
       url += "&cart[items]["+items+"][product_id]=home_school";
       url += "&cart[items]["+items+"][quantity]=1";
     }
     if (voiceTotal > 0) {
       items ++;
-      url += "&cart[items]["+items+"][amount]="+ Math.ceil((100 * voiceTotal) / 3) / 100.0
+      url += "&cart[items]["+items+"][amount]="+ Math.ceil((100 * voiceTotal) / payment_split) / 100.0
       url += "&cart[items]["+items+"][desc]="+$workshopDescription;
       url += "&cart[items]["+items+"][product_id]="+$workshopId;
       url += "&cart[items]["+items+"][quantity]=1";
