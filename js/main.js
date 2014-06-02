@@ -91,6 +91,9 @@
   }
 
   function buildUrl(){
+    if ($('#total').text() == "0"){
+      splitPayments()
+    }
     var url = "https://stageright.trail-staging.us/widget?campaign_id=2904&cart[desc]=HomeSchool";
     var $assistance = $("#assistance").is(":checked")
     var $paymentOption = $("#payment-option").find(":selected").attr('value');
